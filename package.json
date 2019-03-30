@@ -3,8 +3,23 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "author": "fratzinger",
-  "license": "ISC"
+  "license": "MIT",
+  "keywords": [
+    "feathers",
+    "feathersjs",
+    "feathers-vuex",
+    "vue-cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fratzinger/vue-cli-plugin-feathers-vuex.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
 }
