@@ -15,6 +15,7 @@ module.exports = (api, options) => {
 
   const servicePath = options.service.path;
   const { idField, instanceDefaults } = options.service;
+  const customizeStore = options.service.isCustomize && options.service.customize.includes('store');
 
   api.render({
     [`./src/store/services/${servicePath}.js`]: './templates/store/services/service.js',
@@ -23,5 +24,6 @@ module.exports = (api, options) => {
     idField,
     servicePath,
     instanceDefaults,
+    customizeStore,
   });
 };

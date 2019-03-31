@@ -82,5 +82,26 @@ module.exports = [
     ],
     default: 0,
   },
+  {
+    when: answers => answers.actionType === 'service',
+    name: 'service.isCustomize',
+    type: 'confirm',
+    message: 'Do you want to customize the service?',
+    default: false,
+  },
+  {
+    when: answers => answers.actionType === 'service' && answers.service.isCustomize,
+    name: 'service.customize',
+    type: 'checkbox',
+    message: 'What do you want to add?',
+    choices: [
+      {
+        name: 'add state, getters, mutations & actions',
+        value: 'store',
+        checked: true,
+      },
+    ],
+    default: 0,
+  },
   // #endregion
 ];

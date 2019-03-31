@@ -7,7 +7,13 @@ const { service } = feathersVuex(feathersClient, { idField: '<%= idField %>' });
 
 const servicePath = '<%= servicePath %>';
 const servicePlugin = service(servicePath, {
-<% if ( instanceDefaults == "obj" ) { -%>
+<% if (customizeStore) { -%>
+  state: {},
+  getters: {},
+  mutations: {},
+  actions: {},
+<% } -%>
+<% if (instanceDefaults == "obj") { -%>
   instanceDefaults: {
 
   },
