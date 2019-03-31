@@ -4,11 +4,11 @@ module.exports = (api, options) => {
     throw "Vuex not installed! Please run 'vue add vuex' first!";
   }
 
-  const isInit = options.actionType == "init";
+  const isInit = options.actionType == 'init';
 
-  if (isInit) require("./init.js")(api, options);
+  if (isInit) require('./init.js')(api, options);
 
-  const isService = options.actionType == "service";
+  const isService = options.actionType == 'service';
 
-  if (isService) require("./createService.js")(api, options);
+  if (isService) require('./createService.js')(api, options);
 };

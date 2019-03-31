@@ -3,7 +3,8 @@ const fs = require('fs');
 module.exports = (api, options) => {
   const { createServicesFolder } = require('./utils')(api);
 
-  console.log('Hallo');
+  const storePlainFile = api.resolve('./src/store.js');
+  const storeFolder = api.resolve('./src/store/');
 
   api.extendPackage({
     dependencies: {
@@ -16,8 +17,6 @@ module.exports = (api, options) => {
   });
 
   const moveStorePlainToFolderIndex = () => {
-    const storePlainFile = api.resolve('./src/store.js');
-    const storeFolder = api.resolve('./src/store/');
     const storeIndexFile = api.resolve('./src/store/index.js');
 
     try {
@@ -33,30 +32,14 @@ module.exports = (api, options) => {
     }
   };
 
-  const feathersClientFile = () => {
-    const url = options.init.serverUrl || 'http://localhost:3030';
-
-    const array = ["import feathers from '@feathersjs/feathers';",
-      "import socketio from '@feathersjs/socketio-client';",
-      "import auth from '@feathersjs/authentication-client';",
-      "import io from 'socket.io-client';",
-      '',
-      `const socket = io('${url}', {transports: ['websocket']});`,
-      '',
-      'const feathersClient = feathers()',
-      '  .configure(socketio(socket))',
-      '  .configure(auth({ storage: window.localStorage }));',
-      '',
-      'export default feathersClient;'];
-
-    return array.join('\n');
-  };
-
-  function copyFeathersClientFile() {
-    const file = api.resolve('./src/store/feathers-client.js');
+  function createFeathersClientFile() {
+    const clientFilePath = './src/store/feathers-client.js';
+    const file = api.resolve(clientFilePath);
     if (!fs.existsSync(file)) {
-      fs.writeFileSync(file, feathersClientFile(), (err) => {
-        if (err) console.log(err);
+      api.render({
+        clientFilePath: './templates/store/feathers-client.js',
+      }, {
+        serverUrl: options.init.serverUrl,
       });
     }
   }
@@ -127,10 +110,8 @@ module.exports = (api, options) => {
     fs.writeFileSync(storeFile, storeLines.join('\n'), { encoding: 'utf-8' });
   }
 
-  api.onCreateComplete(() => {
-    moveStorePlainToFolderIndex();
-    copyFeathersClientFile();
-    modifyStoreFile();
-    createServicesFolder();
-  });
+  moveStorePlainToFolderIndex();
+  createFeathersClientFile();
+  modifyStoreFile();
+  createServicesFolder();
 };

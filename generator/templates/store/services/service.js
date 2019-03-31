@@ -1,13 +1,22 @@
 /* eslint-disable no-unused-vars */
 
 import feathersVuex from 'feathers-vuex';
-import feathersClient from '%CLIENTPATH%';
+import feathersClient from '<%= clientPath %>';
 
-const { service } = feathersVuex(feathersClient, { idField: '%IDFIELD%' });
+const { service } = feathersVuex(feathersClient, { idField: '<%= idField %>' });
 
-const servicePath = '%SERVICEPATH%';
+const servicePath = '<%= servicePath %>';
 const servicePlugin = service(servicePath, {
-%INSTANCEDEFAULTS%
+<% if ( instanceDefaults == "obj" ) { -%>
+  instanceDefaults: {
+
+  },
+<%_ } else { -%>
+  instanceDefaults(data, { store, Model, Models }) {
+    return {
+    };
+  },
+<%_ } -%>
 });
 
 feathersClient.service(servicePath)
