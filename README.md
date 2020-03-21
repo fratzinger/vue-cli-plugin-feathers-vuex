@@ -7,7 +7,9 @@
 
 Vue Cli 3 Plugin for initialising [feathers-vuex](https://github.com/feathers-plus/feathers-vuex) and adding services. For feathers-vuex > `v1.7.0`
 
-![feathers-vuex service logo](https://github.com/feathers-plus/feathers-vuex/raw/master/service-logo.png)
+<div align="center">
+    <img src="https://github.com/feathers-plus/feathers-vuex/raw/master/service-logo.png" />
+</div>
 
 > Integrate feathers-vuex into vue automatically
 
