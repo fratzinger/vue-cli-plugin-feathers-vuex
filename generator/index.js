@@ -1,3 +1,6 @@
+const init = require("./init.js");
+const createService = require("./createService");
+
 module.exports = (api, options) => {
   const hasVuex = api.hasPlugin('vuex');
   if (!hasVuex) {
@@ -6,9 +9,9 @@ module.exports = (api, options) => {
 
   const isInit = options.actionType == 'init';
 
-  if (isInit) require('./init.js')(api, options);
+  if (isInit) init(api, options);
 
   const isService = options.actionType == 'service';
 
-  if (isService) require('./createService.js')(api, options);
+  if (isService) createService(api, options);
 };

@@ -3,7 +3,6 @@
   "version": "0.0.2",
   "description": "",
   "main": "index.js",
-  "scripts": {},
   "author": "fratzinger",
   "license": "MIT",
   "keywords": [
@@ -15,6 +14,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/fratzinger/vue-cli-plugin-feathers-vuex.git"
+  },
+  "scripts": {
+    "lint": "eslint . --config .eslintrc.js"
   },
   "dependencies": {},
   "devDependencies": {

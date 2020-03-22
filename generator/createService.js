@@ -1,7 +1,8 @@
 const fs = require('fs');
+const utils = require("./utils");
 
 module.exports = (api, options) => {
-  const { createServicesFolder } = require('./utils')(api);
+  const { createServicesFolder } = utils(api);
 
   if (options.actionType !== 'service') throw 'service not defined!';
 
