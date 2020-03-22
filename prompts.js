@@ -1,20 +1,4 @@
-module.exports = [
-  {
-    name: 'actionType',
-    type: 'list',
-    message: 'What do you want to do?',
-    choices: [
-      {
-        name: 'init feathers-vuex',
-        value: 'init',
-      }, {
-        name: 'add service',
-        value: 'service',
-      },
-    ],
-    default: 0,
-  },
-  // #region init
+const init = [
   {
     when: answers => answers.actionType === 'init',
     name: 'init.serverUrl',
@@ -43,8 +27,9 @@ module.exports = [
     message: 'What is the name of your users-service for authentication?',
     default: 'users',
   },
-  // #endregion
-  // #region generate service
+];
+
+const generateService = [
   {
     when: answers => answers.actionType === 'service',
     name: 'service.path',
@@ -103,5 +88,24 @@ module.exports = [
     ],
     default: 0,
   },
-  // #endregion
+];
+
+module.exports = [
+  {
+    name: 'actionType',
+    type: 'list',
+    message: 'What do you want to do?',
+    choices: [
+      {
+        name: 'init feathers-vuex',
+        value: 'init',
+      }, {
+        name: 'add service',
+        value: 'service',
+      },
+    ],
+    default: 0,
+  },
+  ...init,
+  ...generateService
 ];

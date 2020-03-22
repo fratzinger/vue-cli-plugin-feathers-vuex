@@ -1,18 +1,19 @@
 const fs = require('fs');
+const utils = require('./utils')
 
 module.exports = (api, options) => {
-  const { createServicesFolder } = require('./utils')(api);
+  const { createServicesFolder } = utils(api);
 
   const storePlainFile = api.resolve('./src/store.js');
   const storeFolder = api.resolve('./src/store/');
 
   api.extendPackage({
     dependencies: {
-      '@feathersjs/authentication-client': '^1.0.11',
-      '@feathersjs/feathers': '^3.3.1',
-      '@feathersjs/socketio-client': '^1.2.1',
-      'feathers-vuex': '^1.7.0',
-      'socket.io-client': '^2.2.0',
+      '@feathersjs/authentication-client': '^4.3.5',
+      '@feathersjs/feathers': '^4.3.5',
+      '@feathersjs/socketio-client': '^4.3.5',
+      'feathers-vuex': '^3.2.1',
+      'socket.io-client': '^2.3.0',
     },
   });
 
@@ -33,11 +34,11 @@ module.exports = (api, options) => {
   };
 
   function createFeathersClientFile() {
-    const clientFilePath = './src/store/feathers-client.js';
+    const clientFilePath = './src/store/feathers/client.js';
     const file = api.resolve(clientFilePath);
     if (!fs.existsSync(file)) {
       api.render({
-        clientFilePath: './templates/store/feathers-client.js',
+        clientFilePath: './templates/store/feathers/client.js',
       }, {
         serverUrl: options.init.serverUrl,
       });
