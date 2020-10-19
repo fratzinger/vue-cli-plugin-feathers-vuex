@@ -1,0 +1,25 @@
+---
+  to: './src/store/feathers/models/<%= namespace %>.model.js'
+---
+
+import { BaseModel } from '@/store/feathers/feathers.client.js';
+
+export default class <%= modelName %> extends BaseModel {
+  constructor(data, options) {
+    super(data, options);
+  }
+
+  static modelName = '<%= modelName %>';
+
+  // eslint-disable-next-line no-unused-vars
+  static instanceDefaults(data, { models, store }) {
+    return {
+      //write your default properties here
+    };
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  static setupInstance(data, { models, store }) {
+    return data;
+  }
+}
