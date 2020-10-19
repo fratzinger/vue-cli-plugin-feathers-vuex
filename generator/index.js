@@ -1,17 +1,15 @@
-const init = require("./init.js");
-const createService = require("./createService");
+const createApp = require('./app');
+const createService = require('./service');
+const {
+  checkVuex
+} = require('./utils');
 
 module.exports = (api, options) => {
-  const hasVuex = api.hasPlugin('vuex');
-  if (!hasVuex) {
-    throw "Vuex not installed! Please run 'vue add vuex' first!";
+  checkVuex(api);
+
+  if (!options.actionType || options.actionType === 'app') {
+    createApp(api, options);
+  } else if (options.actionType === 'service') {
+    createService(api, options.service);
   }
-
-  const isInit = options.actionType == 'init';
-
-  if (isInit) init(api, options);
-
-  const isService = options.actionType == 'service';
-
-  if (isService) createService(api, options);
 };
