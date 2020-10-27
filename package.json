@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-feathers-vuex",
-  "version": "0.0.2",
+  "version": "1.0.0-pre.1",
   "description": "",
   "main": "index.js",
   "author": "fratzinger",
@@ -16,6 +16,10 @@
     "url": "git://github.com/fratzinger/vue-cli-plugin-feathers-vuex.git"
   },
   "scripts": {
+    "release:pre": "npm version prerelease && npm publish --tag pre",
+    "release:patch": "npm version patch && npm publish",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish",
     "lint": "eslint . --config .eslintrc.js",
     "test": "npm run lint && npm run mocha",
     "mocha": "mocha test/index.test.js --exit"
