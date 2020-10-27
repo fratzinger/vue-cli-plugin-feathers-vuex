@@ -47,10 +47,10 @@ const makePrompts = (pkg) => {
     }
   ];
   const servicePrompts = makeServicePrompts(pkg, 'users');
-  for (let question of servicePrompts) {
-    // eslint-disable-next-line no-unused-vars
+  servicePrompts.forEach(question => {
     question.when = isAuth;
-  }
+  });
+  
   prompts.push(...servicePrompts);
   return prompts;
 };

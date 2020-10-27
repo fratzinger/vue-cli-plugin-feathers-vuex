@@ -41,7 +41,7 @@ const makePrompts = (pkg, defaultPath) => {
       when: isService,
       name: 'service.servicePath',
       type: 'input',
-      message: 'What is the name of the service?',
+      message: 'What is the path of the service?',
       default: defaultPath || '',
       validate: validateEmpty
     },

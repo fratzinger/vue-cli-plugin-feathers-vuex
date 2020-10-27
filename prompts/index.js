@@ -1,6 +1,9 @@
+const _get = require('lodash/get');
+
 const makeAppPrompts = require('./app.prompts');
 const makeServicePrompts = require('./service.prompts');
-const _get = require('lodash/get');
+const makeCopyTemplatePrompts = require('./copyTemplate.prompts');
+const makeServiceFromTemplatePrompts = require('./serviceFromTemplate.prompts');
 
 const hasFVDependency = (pkg) => _get(pkg, 'dependencies["feathers-vuex"]');
 
@@ -16,17 +19,25 @@ module.exports = pkg => {
       message: 'What do you want to do?',
       choices: [
         {
-          name: 'init feathers-vuex',
-          value: 'app',
-        }, {
           name: 'add service',
           value: 'service',
-        },
+        }, {
+          name: 'add service from custom template',
+          value: 'serviceFromTemplate'
+        }, {
+          name: 'copy template to feathers folder',
+          value: 'copyTemplate'
+        }, {
+          name: 'init feathers-vuex',
+          value: 'app',
+        }
       ],
       default: 0,
     },
+    ...makeServicePrompts(pkg),
+    ...makeServiceFromTemplatePrompts(pkg),
+    ...makeCopyTemplatePrompts(pkg),
     ...makeAppPrompts(pkg),
-    ...makeServicePrompts(pkg)
   ];
 
   return prompts;
