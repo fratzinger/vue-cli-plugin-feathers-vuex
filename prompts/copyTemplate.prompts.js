@@ -4,6 +4,7 @@ const isCopyTemplate = (answers) => {
   return answers.actionType === 'copyTemplate';
 };
 
+// eslint-disable-next-line no-unused-vars
 module.exports = pkg => {
   const prompts = [
     {
