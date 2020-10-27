@@ -11,7 +11,6 @@ const {
   injectPlugins
 } = require('./storeFile.utils');
 
-
 const { 
   createFeathersClientFile,
   createFeathersAuthFile
@@ -27,7 +26,7 @@ const dependencies = {
   'socket.io-client': '^2.3.1',
 };
 
-module.exports = (api, {
+module.exports = async (api, {
   app: appOptions,
   service: usersServiceOptions
 }) => {
@@ -37,7 +36,7 @@ module.exports = (api, {
     dependencies
   });
 
-  moveStorePlainToFolderIndex(api);
+  await moveStorePlainToFolderIndex(api);
   createFeathersFolder(api);
   createFeathersClientFile(api, appOptions);
 
@@ -65,12 +64,12 @@ module.exports = (api, {
     linesAtTop.push('import auth from \'@/store/feathers/feathers.auth\';');
   }
 
-  injectLinesBeforeVueUseVuex(api, linesAtTop, (storeLines) => {
+  await injectLinesBeforeVueUseVuex(api, linesAtTop, (storeLines) => {
     return storeLines.findIndex(line => line.includes('Vue.use(FeathersVuex)')) >= 0;
   });
 
   const plugins = ['...servicePlugins'];
   if (appOptions.isAuth) plugins.push('auth');
 
-  injectPlugins(api, plugins);
+  await injectPlugins(api, plugins);
 };

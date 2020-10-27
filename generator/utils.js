@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 
 const checkVuex = (api) => {
   const hasVuex = api.hasPlugin('vuex');
@@ -17,6 +16,7 @@ const feathersClientFile = `${feathersFolderPath}/feathers.client.js`;
 const feathersAuthFile = `${feathersFolderPath}/feathers.auth.js`;
 const servicesPath = `${feathersFolderPath}/services`;
 const modelsPath = `${feathersFolderPath}/models`;
+const templatesFolder = `${feathersFolderPath}/.templates`;
 
 const createFeathersFolder = (api) => {
   const feathersFolder = api.resolve(feathersFolderPath);
@@ -33,15 +33,6 @@ const createModelsFolder = (api) => {
   if (!fs.existsSync(modelsFolder)) fs.mkdirSync(modelsFolder, { recursive: true });
 };
 
-const nthIndex = (str, pat, n) => {
-  var L= str.length, i= -1;
-  while(n-- && i++<L){
-    i= str.indexOf(pat, i);
-    if (i < 0) break;
-  }
-  return i;
-};
-
 module.exports = {
   checkVuex,
   createFeathersFolder,
@@ -50,7 +41,7 @@ module.exports = {
   feathersFolderPath,
   feathersClientFile,
   feathersAuthFile,
+  templatesFolder,
   servicesPath,
-  modelsPath,
-  nthIndex
+  modelsPath
 };

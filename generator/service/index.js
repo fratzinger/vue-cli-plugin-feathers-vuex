@@ -3,15 +3,14 @@ const path = require('path');
 const ejs = require('ejs');
 const { 
   createServicesFolder,
-  createModelsFolder,
-  feathersClientFile
+  createModelsFolder
 } = require('../utils');
 
 const filesInFolder = (folder) => {
-  const files = fs.readdirSync(path.join(__dirname, folder), { encoding: 'utf-8' });
+  const files = fs.readdirSync(folder, { encoding: 'utf-8' });
 
   return files.map(file => {
-    return path.resolve(__dirname, folder, file);
+    return path.join(folder, file);
   });
 };
 
@@ -50,18 +49,19 @@ module.exports = (api, options) => {
   createServicesFolder(api);
   createModelsFolder(api);
 
-  const filesInTemplateFolder = filesInFolder('../templates/service');
+  const fromFolder = options.fromFolder || path.join(__dirname, '../templates/service');
+  const filesInTemplateFolder = filesInFolder(fromFolder);
   filesCheckYaml(filesInTemplateFolder);
-  const log = {};
   filesInTemplateFolder.forEach(file => {
     let destination = getDestinationForFile(file);
     destination = ejs.render(destination, options);
-    if (api.resolve(destination)) {
-      console.error(`file at ${destination} already exists! It will not be overwritten!`);
+    const absoluteDestination = api.resolve(destination);
+    if (fs.existsSync(absoluteDestination)) {
+      console.error(`file at ${absoluteDestination} already exists! It will not be overwritten!`);
+      return;
     }
     api.render({
       [destination]: file
     }, options);
-    log[destination] = file;
   });
 };
