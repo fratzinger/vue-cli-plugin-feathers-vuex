@@ -1,3 +1,12 @@
+---
+# you can use the following properties:
+# - 'serverUrl'
+# - 'serverAlias'
+# - 'idField'
+# - 'isAuth'
+---
+// for more information see: https://vuex.feathersjs.com/getting-started.html#feathers-client-feathers-vuex
+
 import feathers from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio-client';
 import auth from '@feathersjs/authentication-client';
@@ -18,7 +27,7 @@ const feathersClient = feathers()
 
 export default feathersClient;
 
-// Setup feathers-vuex
+// Setup feathers-vuex, for more information see: https://vuex.feathersjs.com/getting-started.html#global-configuration
 const {
   makeServicePlugin,
   makeAuthPlugin,

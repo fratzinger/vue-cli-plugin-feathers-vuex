@@ -1,5 +1,11 @@
 ---
+  # this line describes where your file gets rendered
   to: './src/store/feathers/services/<%= namespace %>.service.js'
+  # you can use the following properties in your template:
+  # - 'servicePath'
+  # - 'namespace'
+  # - 'modelName'
+  # for more information see: https://vuex.feathersjs.com/service-plugin.html
 ---
 
 import feathersClient, {
@@ -9,15 +15,16 @@ import feathersClient, {
 import Model from '../models/<%= namespace %>.model.js';
 
 const servicePath = "<%= servicePath %>";
+// for more information see https://vuex.feathersjs.com/service-plugin.html#configuration
 const servicePlugin = makeServicePlugin({
+  Model,
+  servicePath,
+  namespace: '<%= namespace %>',
+  service: feathersClient.service(servicePath),
   state: {},
   getters: {},
   mutations: {},
   actions: {},
-  Model,
-  servicePath,
-  namespace: '<%= namespace %>',
-  service: feathersClient.service(servicePath)
 });
 
 feathersClient.service(servicePath).hooks({
