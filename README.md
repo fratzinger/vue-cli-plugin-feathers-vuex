@@ -1,4 +1,5 @@
 # vue-cli-plugin-feathers-vuex
+
 [![Known Vulnerabilities](https://snyk.io/test/github/fratzinger/vue-cli-plugin-feathers-vuex/badge.svg?targetFile=package.json)](https://snyk.io/test/github/fratzinger/vue-cli-plugin-feathers-vuex?targetFile=package.json)
 [![Dependency Status](https://david-dm.org/fratzinger/vue-cli-plugin-feathers-vuex.svg)](https://david-dm.org/fratzinger/vue-cli-plugin-feathers-vuex)
 ![NPM](https://img.shields.io/npm/l/vue-cli-plugin-feathers-vuex)
@@ -7,7 +8,9 @@
 
 Vue Cli Plugin for initialising [feathers-vuex](https://github.com/feathers-plus/feathers-vuex) and adding services. For feathers-vuex `v3.0.0` and ongoing
 
-![feathers-vuex service logo](https://github.com/feathers-plus/feathers-vuex/raw/master/service-logo.png)
+<div align="center">
+    <img src="https://github.com/feathers-plus/feathers-vuex/raw/master/service-logo.png" />
+</div>
 
 > Integrate feathers-vuex into vue automatically
 
