@@ -1,0 +1,14 @@
+// eslint-disable-next-line no-unused-vars
+import feathersClient, { makeAuthPlugin, models } from '@/store/feathers/client';
+
+// for more information see https://vuex.feathersjs.com/auth-plugin.html#configuration
+export default makeAuthPlugin(
+  {
+    serverAlias: '<%= serverAlias %>',
+    userService: '<%= servicePath %>',
+    state: {},
+    getters: {},
+    mutations: {},
+    actions: {}
+  }
+);
